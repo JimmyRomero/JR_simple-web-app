@@ -40,6 +40,7 @@ pipeline {
              reportDir: 'build/reports/jacoco',
              reportFiles: 'index.html',
              reportName: "Code Coverage Jacoco"
+             ])
             }
 
         success {
