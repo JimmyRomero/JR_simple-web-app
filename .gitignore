@@ -1,1 +1,7 @@
+/.gradle/
+/.vscode/
+/.settings/
 /build/
+/bin/
+/out/
+*.iml
