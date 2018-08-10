@@ -6,6 +6,7 @@ plugins {
 apply plugin: 'war'
 apply plugin: 'jacoco'
 apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
 
 jacoco {
     toolVersion = "0.8.1"
@@ -25,6 +26,12 @@ checkstyle {
    toolVersion = '8.8'
 }
 
+findbugs{
+    ignoreFailures=true
+    findbugsTest.enabled=false
+    toolVersion = '3.0.1'
+}
+
 repositories {
    mavenCentral()
 }
@@ -35,4 +42,12 @@ dependencies {
 
 gretty {
    httpPort = 8080
+}
+
+tasks.withType(FindBugs) {
+   ignoreFailures = true
+   reports {
+       xml.enabled false
+       html.enabled true
+   }
 }

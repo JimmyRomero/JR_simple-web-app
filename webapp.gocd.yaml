@@ -42,12 +42,17 @@ pipelines:
                 - build:
                     source: build/reports/checkstyle/*
                     destination: checkstyle
+                - build:
+                    source: build/reports/findbugs/*
+                    destination: findbugs
                 - test:
                     source: build/test-results/test/*.xml
                     destination: xml                    
               tabs:
                 Junit_Test: html/index.html
                 Code_Coverage: jacoco/index.html
+                checkstyle: checkstyle/main.html
+                findbugs: findbugs/main.html
       - CodeQuality:
           jobs:
             Check:
