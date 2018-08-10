@@ -11,7 +11,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh'./gradlew test jacocoTestReport'
+                sh'./gradlew test jacocoTestReport check'
             }
         }
         stage('CodeQuality') {
@@ -41,6 +41,13 @@ pipeline {
              reportFiles: 'index.html',
              reportName: "Code Coverage Jacoco"
              ])
+             publishHTML(target: [allowMissing: true, 
+              alwaysLinkToLastBuild: false,  
+              keepAll: true, 
+              reportDir: 'build/reports/checkstyle', 
+              reportFiles: 'main.html', 
+              reportTitles: "Checkstyle report",
+              reportName: 'CheckstyleReport'])
             }
 
         success {

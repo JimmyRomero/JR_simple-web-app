@@ -31,6 +31,7 @@ pipelines:
                       - "clean"
                       - "test"
                       - "jacocoTestReport"
+                      - "check"
               artifacts:
                 - build:
                     source: build/reports/tests/test/**/*
@@ -38,6 +39,9 @@ pipelines:
                 - build:
                     source: build/reports/jacoco/**/*
                     destination: jacoco
+                - build:
+                    source: build/reports/checkstyle/*
+                    destination: checkstyle
                 - test:
                     source: build/test-results/test/*.xml
                     destination: xml                    
