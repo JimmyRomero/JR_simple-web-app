@@ -5,8 +5,8 @@ pipelines:
     group: SimpleWebApp
     materials:
       repo:
-        git: https://github.com/JimmyRomero/JR_simple-web-app
-        branch: gocd_config_file
+        git: https://github.com/devops-at06/JR_simple-web-app.git
+        branch: master
     stages:
       - Build:
           jobs:
