@@ -5,6 +5,7 @@ plugins {
 
 apply plugin: 'war'
 apply plugin: 'jacoco'
+apply plugin: 'checkstyle'
 
 jacoco {
     toolVersion = "0.8.1"
@@ -17,6 +18,11 @@ jacocoTestReport {
         csv.enabled false
         html.destination file("${buildDir}/reports/jacoco")
     }
+}
+
+checkstyle {
+   ignoreFailures = true
+   toolVersion = '8.8'
 }
 
 repositories {
