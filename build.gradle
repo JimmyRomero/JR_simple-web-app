@@ -7,6 +7,7 @@ apply plugin: 'war'
 apply plugin: 'jacoco'
 apply plugin: 'checkstyle'
 apply plugin: 'findbugs'
+apply plugin: 'pmd'
 
 jacoco {
     toolVersion = "0.8.1"
@@ -30,6 +31,15 @@ findbugs{
     ignoreFailures=true
     findbugsTest.enabled=false
     toolVersion = '3.0.1'
+}
+
+pmd {
+    ignoreFailures = true
+    ruleSets = [
+    "java-basic",
+    "java-braces"
+  ]
+    toolVersion = '6.0.0'
 }
 
 repositories {

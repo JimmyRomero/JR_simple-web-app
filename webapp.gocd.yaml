@@ -45,6 +45,9 @@ pipelines:
                 - build:
                     source: build/reports/findbugs/*
                     destination: findbugs
+                - build:
+                    source: build/reports/pmd/*
+                    destination: pmd
                 - test:
                     source: build/test-results/test/*.xml
                     destination: xml                    
@@ -53,6 +56,7 @@ pipelines:
                 Code_Coverage: jacoco/index.html
                 checkstyle: checkstyle/main.html
                 findbugs: findbugs/main.html
+                pmd: pmd/main.html
       - CodeQuality:
           jobs:
             Check:

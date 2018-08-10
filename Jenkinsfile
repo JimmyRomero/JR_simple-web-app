@@ -57,6 +57,14 @@ pipeline {
               reportTitles: "Bugs Report",
               reportName: 'BugReport'
               ])
+            publishHTML(target: [allowMissing: true, 
+              alwaysLinkToLastBuild: false,  
+              keepAll: true, 
+              reportDir: 'build/reports/pmd', 
+              reportFiles: 'main.html', 
+              reportTitles: "source code analyzer",
+              reportName: 'PmdReport'
+              ])
             }
 
         success {
