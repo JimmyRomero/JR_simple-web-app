@@ -1,0 +1,55 @@
+format_version: 3
+pipelines:  
+  jr-java-quickstart:
+    lock_behavior: lockOnFailure
+    group: SimpleWebApp
+    materials:
+      repo:
+        git: https://github.com/JimmyRomero/JR.git
+        branch: gocd_config_file
+    stages:
+      - Build:
+          jobs:
+            building:
+              tasks:
+                - exec:
+                    command: ./gradlew
+                    arguments:
+                      - "clean"
+                      - "assemble"                      
+              artifacts:
+                - build:
+                    source: build/libs/*.war
+                    destination: Build
+      - Test:
+          jobs:
+            Unit_Test:
+              tasks:
+                - exec:
+                    command: ./gradlew
+                    arguments: 
+                      - "clean"
+                      - "test"
+                      - "jacocoTestReport"
+              artifacts:
+                - build:
+                    source: build/reports/tests/test/**/*
+                    destination: html
+                - build:
+                    source: build/reports/jacoco/**/*
+                    destination: jacoco
+                - test:
+                    source: build/test-results/test/*.xml
+                    destination: xml                    
+              tabs:
+                Junit_Test: html/index.html
+                Code_Coverage: jacoco/index.html
+      - CodeQuality:
+          jobs:
+            Check:
+              tasks:
+                - exec:
+                    command: ./gradlew
+                    arguments:
+                      - "sonarqube"
+                
