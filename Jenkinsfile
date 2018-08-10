@@ -41,13 +41,22 @@ pipeline {
              reportFiles: 'index.html',
              reportName: "Code Coverage Jacoco"
              ])
-             publishHTML(target: [allowMissing: true, 
+            publishHTML(target: [allowMissing: true, 
               alwaysLinkToLastBuild: false,  
               keepAll: true, 
               reportDir: 'build/reports/checkstyle', 
               reportFiles: 'main.html', 
               reportTitles: "Checkstyle report",
-              reportName: 'CheckstyleReport'])
+              reportName: 'CheckstyleReport'
+              ])
+            publishHTML(target: [allowMissing: true, 
+              alwaysLinkToLastBuild: false,  
+              keepAll: true, 
+              reportDir: 'build/reports/findbugs', 
+              reportFiles: 'main.html', 
+              reportTitles: "Bugs Report",
+              reportName: 'BugReport'
+              ])
             }
 
         success {
