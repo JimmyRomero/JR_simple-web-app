@@ -24,12 +24,12 @@ pipeline {
     }
     post {
 		always {
-			junit '/build/test-results/test/*.xml'
+			junit 'build/test-results/test/*.xml'
             publishHTML (target: [
               allowMissing: false,
               alwaysLinkToLastBuild: false,
               keepAll: true,
-              reportDir: '/build/reports/tests/test',
+              reportDir: 'build/reports/tests/test',
               reportFiles: 'index.html',
               reportName: "Junit Reports"
               ])
