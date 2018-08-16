@@ -19,6 +19,12 @@ pipeline {
                 echo 'Code Quality..'
                 sh'./gradlew sonarqube'
             }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploy..'
+                sh'./gradlew -b deploy.gradle deploy -Pdev_server=10.28.109.116 -Pwar_path=war -Pwar_name=JR_simple-web-app -Pkey_path_jen=/home/jindevops.pem'
+            }
         } 
                
     }
