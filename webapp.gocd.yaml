@@ -20,7 +20,7 @@ pipelines:
               artifacts:
                 - build:
                     source: build/libs/*.war
-                    destination: Build
+                    destination: war
       - Test:
           jobs:
             Unit_Test:
