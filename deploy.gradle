@@ -1,0 +1,22 @@
+plugins {
+  id 'org.hidetake.ssh' version '2.9.0'
+}
+
+remotes {
+  webServer {
+    host = dev_server
+    user = user_server
+    identity = file(key_path)
+  }
+}
+
+task deploy {
+  doLast {
+    ssh.run {
+      session(remotes.webServer) {
+        put from: "${war_path}/${war_name}.war", into: "/tmp/${war_name}.war"        
+        executeScript file('deploy-app.sh')
+      }
+    }
+  }
+}
