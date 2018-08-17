@@ -26,6 +26,11 @@ pipeline {
                 sh'./gradlew -b deploy.gradle deploy -Pdev_server=10.28.109.116 -Pwar_name=JR_simple-web-app -Pwar_path=build/libs/ -Pkey_path=/home/jindevops.pem'
             }
         } 
+
+        stage('Acceptance') {
+            steps {
+                sh './acceptance/gradlew clean test -p acceptance/'
+            }	
                
     }
     post {
@@ -72,6 +77,14 @@ pipeline {
               reportName: 'PmdReport'
               ])
             }
+            publishHTML (target: [
+              allowMissing: false,
+			  alwaysLinkToLastBuild: false,
+			  keepAll: true,
+			  reportDir: 'acceptance/build/reports/cucumber-reports/cucumber-html-reports/',
+			  reportFiles: 'overview-features.html',
+			  reportName: "Cucumber Report"
+			  ])	
 
         success {
 			archiveArtifacts artifacts: 'build/libs/*.war', fingerprint: true
