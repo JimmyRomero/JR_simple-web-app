@@ -31,6 +31,7 @@ pipeline {
             steps {
                 sh './acceptance/gradlew clean test -p acceptance/'
             }	
+        }
                
     }
     post {
