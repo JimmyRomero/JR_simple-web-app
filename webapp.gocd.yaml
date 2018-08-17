@@ -83,3 +83,20 @@ pipelines:
                       - -Pwar_path=war
                       - -Pkey_path=/home/go/jindevops.pem
                       - -Pwar_name=JR_simple-web-app
+      - Acceptance:
+          jobs:
+            Acceptance:
+              tasks:              
+                - exec:
+                    command: ./acceptance/gradlew
+                    arguments:
+                      - clean
+                      - test
+                      - -p
+                      - acceptance
+              artifacts:
+                - build:
+                    source: acceptance/build/reports/cucumberhtml/cucumber-html-reports/*
+                    destination: cucumberReport      
+              tabs:
+                cucumber: cucumberReport/overview-features.html  
