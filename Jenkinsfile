@@ -76,7 +76,6 @@ pipeline {
               reportTitles: "source code analyzer",
               reportName: 'PmdReport'
               ])
-            }
             publishHTML (target: [
               allowMissing: false,
 			  alwaysLinkToLastBuild: false,
@@ -84,7 +83,8 @@ pipeline {
 			  reportDir: 'acceptance/build/reports/cucumber-reports/cucumber-html-reports/',
 			  reportFiles: 'overview-features.html',
 			  reportName: "Cucumber Report"
-			  ])	
+			  ])
+            }            
 
         success {
 			archiveArtifacts artifacts: 'build/libs/*.war', fingerprint: true
