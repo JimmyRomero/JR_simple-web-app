@@ -96,7 +96,7 @@ pipelines:
                       - acceptance
               artifacts:
                 - build:
-                    source: acceptance/build/reports/cucumberhtml/cucumber-html-reports/*
+                    source: acceptance/build/reports/cucumber-reports/cucumber-html-reports/*
                     destination: cucumberReport      
               tabs:
                 cucumber: cucumberReport/overview-features.html  
