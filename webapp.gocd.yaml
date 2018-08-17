@@ -5,8 +5,8 @@ pipelines:
     group: SimpleWebApp
     materials:
       repo:
-        git: https://github.com/JimmyRomero/JR_simple-web-app.git
-        branch: practice_Continuous_Testing
+        git: https://github.com/devops-at06/JR_simple-web-app.git
+        branch: master
     stages:
       - Build:
           jobs:
